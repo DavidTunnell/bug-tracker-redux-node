@@ -1,18 +1,28 @@
 import { compose, pipe } from "lodash/fp";
 
-let numbers = [1, 2, 3];
-//example of higher order function
-numbers.map((numbers) => number * 2);
-
 let input = "   JavaScript   ";
 const trim = (str) => str.trim();
-const wrapInDiv = (str) => "<div>" + str + "</div>";
+//now this function is curried, when wrap("div") is called it will return another function which is used by pipe
+const wrap = (type) => (str) => `<${type}>${str}</${type}>`;
 const toLowerCase = (str) => str.toLowerCase();
 //pipe gives order of operations basted on entry order
-const transform = pipe(trim, toLowerCase, trim);
+//pipe only takes functions
+const transform = pipe(trim, toLowerCase, wrap("span"));
 //now nesting function calls isn't necessary
 const result = transform(input);
 
 console.log(result);
 
-module.exports = result;
+const person = {
+    name: "John",
+    address: { country: "USA", city: "San Francisco" },
+};
+//dont do this: person.name = ""; - dont mutate object
+//use deep copies with nested object to not mutate the original
+const updated = {
+    ...person,
+    address: { ...person.address, city: "New York" },
+    name: "Bob",
+}; //spread operator makes a copy, the 2nd property overwrites what was copied over
+console.log(person);
+console.log(updated);

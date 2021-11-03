@@ -12,7 +12,13 @@ There is a tool called Log Rocket that allows for always on dev tools in product
 
 Redux introduces complexity to a project. It is relatively verbose and can add a lot of code to the project. It is based on functional programming and thus an understanding of it is needed.
 
-Functional Programming
+Technologies
+
+-   redux
+-   Node
+-   Immer - immutable data structure library for functional javascript programming
+
+## Functional Programming Notes
 
 -   The idea behind functional programming is to write a lot of small and reusable functions and compose/ combine them to solve larger problems. Doing this correctly is functional composition. Here is a simple example:
     ```
@@ -60,7 +66,7 @@ Functional Programming
     -   No random values
     -   No current date/time
     -   No reading/changing global state (DOM, files, db. etc) - this could effect the results of pure functions (in Redux context, reducer functions must be pure)
-    -   No mutation of parameters,
+    -   No mutation of parameters
 -   Immutability means once created (such as an object), it can't be changed. To change the object, you would need to update a copy. Const does not create an immutable object. By principal, you should not mutate data while using Redux. Below shows this in practice, there are libraries that can be used to simplify things.
 
     ```
@@ -82,5 +88,31 @@ Functional Programming
     -   Updating Arrays (while practicing immutability)
 
         ```
-
+            const numbers = [1, 2, 3];
+            //adding
+            const index = numbers.indexOf(2); //add to specific position
+            const added = [...numbers.slice(0, index), 4, ...numbers.slice(index)];
+            console.log(added);
+            //subtracting
+            const removed = numbers.filter((n) => n !== 2);
+            console.log(removed);
+            //Updating
+            const updated2 = numbers.map((n) => (n === 2 ? 20 : n)); //replace 2 with 20
+            console.log(updated2);
         ```
+
+-   Immer is an immutable data structure library. It allows you to work with immutable data structures behind the scenes and mutate object like you normally would.
+    ```
+        let book = { title: "Harry Potter" };
+        //with this function, although it appears murated it is immutable.
+        function publish(book) {
+            //pass the object and then the mutations as another function
+            return produce(book, (draftBook) => {
+                draftBook.isPublished = true;
+            });
+        }
+        const updatedBook = publish(book);
+        //both print out, book was not affected
+        console.log(book);
+        console.log(updatedBook);
+    ```

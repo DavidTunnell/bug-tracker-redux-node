@@ -2,21 +2,25 @@
 
 A bug tracker... xyz. This project is based on [Mosh's Redux Tutorial](https://www.youtube.com/watch?v=poQXNp9ItL4) on YouTube.
 
-Redux is a state management library for JavaScript applications. It can be used with vanilla JavaScript and many frameworks, including React. It is typically useful for applications with complex UI and the need to keep data between the many components in sync.
-
-All application state is stored in a central repository, a JavaScript object called the Store. The store is a single source of truth.
-
-Redux's architecture makes it easy to diagnose where and how data changes in the application changes. It makes data flow transparent and predictable.
-
-There is a tool called Log Rocket that allows for always on dev tools in production so you can load the state of a bug a user sees.
-
-Redux introduces complexity to a project. It is relatively verbose and can add a lot of code to the project. It is based on functional programming and thus an understanding of it is needed.
-
 Technologies
 
 -   redux
 -   Node
 -   Immer - immutable data structure library for functional javascript programming
+
+## Redux Notes
+
+Redux is a state management library for JavaScript applications. It can be used with vanilla JavaScript and many frameworks, including React. It is typically useful for applications with complex UI and the need to keep data between the many components in sync.
+
+All application state is stored in a central repository, a JavaScript object called the Store. The store is a single source of truth. Redux's architecture makes it easy to diagnose where and how data changes in the application changes. It makes data flow transparent and predictable. There is a tool called Log Rocket that allows for always on dev tools in production so you can load the state of a bug a user sees.
+
+Redux introduces complexity to a project. It is relatively verbose and can add a lot of code to the project. It is based on functional programming and thus an understanding of it is needed.
+
+### Architecture - Store (aka Data), Actions (aka Events), Reducers (aka Event Handlers - Immutable Updates to Store)
+
+You can't directly modify the store because redux is built on functional programming principals. To update the store use reducer functions. It takes the store as an argument and returns the updated store. Reducers (Pure Functions) also take an action to know what in the store that should be updated. It's an object that describes what happened aka events (login, logout, add to cart, etc.). Based on the action passed in the reducer will know what to update.
+
+Reducers typically are broken up by the fields that are being made persistent in the store. The store is in charge of calling the reducer which computes the new state and returns it.
 
 ## Functional Programming Notes
 

@@ -5,10 +5,7 @@ A bug tracker app utilizing Redux and related Functional Programming practices. 
 Technologies
 
 -   [Redux](https://redux.js.org/) as a Predictable Global State Container for the App
--   [Immer](https://www.npmjs.com/package/immer) as an Immutable Data Structure Library for Functional JavaScript Programming
--   Lodash?
 -   [Node.js](https://nodejs.org/en/)
--   HTML, CSS, JavaScript
 
 ## Redux Notes
 
@@ -29,6 +26,8 @@ Reducers typically are broken up by the fields that are being made persistent in
 1. Design the Store - decide what needs to be kept there
 2. Define the Actions - what are the actions a user can perform in the app
 3. Create Reducers - Create one or more reducers that take an action and return the updated state
+
+Using libraries like Immer and Lodash help simplify the structure of functional programming reducers.
 
 ## Functional Programming Notes
 

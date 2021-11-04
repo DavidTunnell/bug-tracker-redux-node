@@ -7,3 +7,7 @@ export const bugAdded = (description) => {
 export const bugRemoved = (id) => {
     return { type: actions.BUG_REMOVED, payload: { id } };
 };
+
+export const bugResolved = (id) => {
+    return { type: actions.BUG_RESOLVED, payload: { id } };
+};

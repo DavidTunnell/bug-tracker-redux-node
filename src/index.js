@@ -1,5 +1,5 @@
 import store from "./store";
-import { bugAdded, bugRemoved } from "./actions";
+import { bugAdded, bugRemoved, bugResolved } from "./actions";
 
 //the subscribe function tags a function that will be called every time the state of the store gets changed
 //it returns a function for unsubscribing from the store, these should be used to prevent memory leaks
@@ -12,6 +12,8 @@ store.dispatch(bugAdded("Bug #1"));
 store.dispatch(bugAdded("Bug #2"));
 store.dispatch(bugAdded("Bug #3"));
 store.dispatch(bugRemoved(2));
+console.log("----------");
+store.dispatch(bugResolved(3));
 unsubscribe();
 store.dispatch(bugAdded("Bug #4")); //not notified
 

@@ -18,6 +18,20 @@ function reducer(state = [], action) {
             ];
         case actions.BUG_REMOVED:
             return state.filter((bug) => bug.id !== action.payload.id);
+        case actions.BUG_RESOLVED:
+            //remember that you must be careful not to effect the existing object
+            return state.map((bug) =>
+                bug.id !== action.payload.id ? bug : { ...bug, resolved: true }
+            );
+        //this is wrong because it updated the existing object
+        // return state.map((bug) => {
+        //     if (bug.id === action.payload.id) {
+        //         bug.resolved = true;
+        //     } else {
+        //         bug.resolved = false;
+        //     }
+        //     return bug;
+        // });
         default:
             //always return state at the end so the whole app doesn't break if there is an issue
             return state;

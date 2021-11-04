@@ -24,7 +24,6 @@ You can't directly modify the store because redux is built on functional program
 
 Reducers typically are broken up by the fields that are being made persistent in the store. They should contain the minimum information needed to update the state. The store is in charge of calling the reducer which computes the new state and returns it.
 
-
 ### 4 Steps to Built Redux App
 
 1. Design the Store - decide what needs to be kept there

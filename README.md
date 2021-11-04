@@ -1,12 +1,13 @@
-# Bug Tracker - Redux, Node.js
+# Bug Tracker - Redux, Immer, Node.js
 
-A bug tracker... xyz. This project is based on [Mosh's Redux Tutorial](https://www.youtube.com/watch?v=poQXNp9ItL4) on YouTube.
+A bug tracker app utilizing Redux and related Functional Programming practices. This project is based on [Mosh's Redux Tutorial](https://www.youtube.com/watch?v=poQXNp9ItL4) on YouTube.
 
 Technologies
 
--   redux
--   Node
--   Immer - immutable data structure library for functional javascript programming
+-   [Redux](https://redux.js.org/) as a Predictable Global State Container for the App
+-   [Immer](https://www.npmjs.com/package/immer) as an Immutable Data Structure Library for Functional JavaScript Programming
+-   [Node.js](https://nodejs.org/en/)
+-   HTML, CSS, JavaScript
 
 ## Redux Notes
 
@@ -20,7 +21,13 @@ Redux introduces complexity to a project. It is relatively verbose and can add a
 
 You can't directly modify the store because redux is built on functional programming principals. To update the store use reducer functions. It takes the store as an argument and returns the updated store. Reducers (Pure Functions) also take an action to know what in the store that should be updated. It's an object that describes what happened aka events (login, logout, add to cart, etc.). Based on the action passed in the reducer will know what to update.
 
-Reducers typically are broken up by the fields that are being made persistent in the store. The store is in charge of calling the reducer which computes the new state and returns it.
+Reducers typically are broken up by the fields that are being made persistent in the store. They should contain the minimum information needed to update the state. The store is in charge of calling the reducer which computes the new state and returns it.
+
+### 4 Steps to Built Redux App
+
+1. Design the Store - decide what needs to be kept there
+2. Define the Actions - what are the actions a user can perform in the app
+3. Create Reducers - Create one or more reducers that take an action and return the updated state
 
 ## Functional Programming Notes
 
@@ -78,7 +85,7 @@ Reducers typically are broken up by the fields that are being made persistent in
             name: "John",
             address: { country: "USA", city: "San Francisco" },
         };
-        //dont do this: person.name = ""; - dont mutate object
+        //don't do this: person.name = "blah"; - don't mutate object
         //use deep copies with nested object to not mutate the original
         const updated = {
             ...person,
@@ -108,7 +115,7 @@ Reducers typically are broken up by the fields that are being made persistent in
 -   Immer is an immutable data structure library. It allows you to work with immutable data structures behind the scenes and mutate object like you normally would.
     ```
         let book = { title: "Harry Potter" };
-        //with this function, although it appears murated it is immutable.
+        //with this function, although it appears mutated it is immutable.
         function publish(book) {
             //pass the object and then the mutations as another function
             return produce(book, (draftBook) => {
